@@ -42,6 +42,9 @@ export default defineConfig({
           'lessons/0007-time-is-the-variable.html',
         'lessons/0008-pwm-fuel-pump-control':
           'lessons/0008-pwm-fuel-pump-control.html',
+
+        // Reference/cheat-sheet entry point
+        'reference/pwm-basics': 'reference/pwm-basics.html',
       },
 
       // Output configuration
