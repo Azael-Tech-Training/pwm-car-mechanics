@@ -2,7 +2,7 @@
 
 Label: `wayfinder:research`
 Assignee:
-Status: OPEN
+Status: CLOSED
 Blocked By: None
 
 ## Question

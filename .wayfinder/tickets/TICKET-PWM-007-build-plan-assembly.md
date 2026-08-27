@@ -3,17 +3,73 @@
 Label: `wayfinder:task`
 Assignee:
 Status: OPEN
-Blocked By: TICKET-PWM-001, TICKET-PWM-002, TICKET-PWM-003, TICKET-PWM-004, TICKET-PWM-005, TICKET-PWM-006
+Blocked By: TICKET-PWM-001, TICKET-PWM-002, TICKET-PWM-005, TICKET-PWM-006
 
 ## Question
 
-Consolidate every resolution from the previous six tickets into the final deliverable: a `BUILD-PLAN.md` at the root of the `pwm-car-mechanics` repo. The plan must be build-ready and beginner-readable, containing:
+Consolidate the resolutions from the completed Wayfinder research and prototype tickets into the final implementation plan for the PWM website.
 
-- **Stack**: bundler + rendering model (from tooling research), and how components are shared between site and deck (from component-sharing research).
-- **Site architecture**: landing page, lessons index, navigation, routing, presentation placement (from the architecture ticket) — with the agreed wireframe.
-- **Content plan**: how lessons/reference are structured and linked, including the diagram fix list (from the diagram ticket).
-- **Deployment**: hosting platform + CI/CD outline (from hosting research).
-- **Build steps**: ordered, beginner-sized implementation steps with roles (from the capacitation rotation) and mentor review checkpoints.
-- **Out of scope / future**: anything ruled out, and fog items not yet decided.
+The plan must be build-ready and beginner-readable, while remaining consistent with the decisions already made.
 
-This closes the map: when BUILD-PLAN.md is merged, the way to the destination is clear.
+## Required content
+
+### Stack
+
+Document the selected technology stack based on the tooling research:
+
+- Vite as the build tool.
+- Static pre-rendered Multi-Page Application (MPA).
+- Vanilla HTML, CSS, and JavaScript.
+- Client-side JavaScript for interactive simulator widgets.
+- No React requirement.
+
+### Site architecture
+
+Document the agreed website structure from the site architecture ticket:
+
+- Landing page.
+- Lessons index.
+- Individual lesson pages.
+- Lesson navigation.
+- URL/routing structure.
+- Reference/cheat-sheet page if recommended.
+- Shared page structure and reusable UI elements.
+- Agreed landing-page and lessons-index wireframes.
+
+The presentation/Slidev deck is no longer part of the website scope and must not be included as a website dependency.
+
+### Component architecture
+
+Document the conclusions regarding reusable components within the Vite website.
+
+Do not introduce React unless a later decision explicitly requires it.
+
+Where appropriate, identify reusable UI or interactive components and describe their responsibility at a high level. The implementation approach should remain as simple and framework-agnostic as possible.
+
+### Content plan
+
+Document:
+
+- The lesson structure.
+- How lessons are organized and linked.
+- The lessons index structure.
+- Previous/next navigation.
+- Breadcrumb or contextual navigation if recommended.
+- Reference/cheat-sheet content if recommended.
+- Interactive simulator placement.
+- The diagram problems and proposed fixes identified by the diagram research.
+
+Include the diagram fix list from:
+
+`docs/DIAGRAM-FIX-PLAN.md`
+
+### Deployment
+
+Do not define a hosting platform or CI/CD strategy.
+
+Hosting and production deployment were intentionally deferred by TICKET-PWM-004 and are currently out of scope.
+
+The plan should only document that:
+
+```text
+npm run build
