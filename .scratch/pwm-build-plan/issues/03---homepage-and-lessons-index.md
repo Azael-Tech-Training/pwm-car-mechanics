@@ -1,6 +1,6 @@
-# 03 — Homepage and Lessons Index
+# 03 — Lessons Index
 
-**What to build:** `/index.html` (homepage) and `/lessons/index.html` with consistent navigation (header nav, lesson footer with prev/next/cheat sheet/home links). CSS path pattern resolved for both root and subdirectory references.
+**What to build:** `/lessons/index.html` with consistent navigation (header nav, lesson footer with prev/next/cheat sheet/home links). CSS path pattern resolved for both root and subdirectory references.
 
 **Blocked by:** 02 — Shared CSS Design Tokens and Component Patterns
 

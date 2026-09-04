@@ -3,8 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pulse Width Modulation for Automotive Electronics - The complete interactive guide to PWM signals in modern vehicles">
   <title>Pulse Width Modulation for Automotive Electronics</title>
+  <!-- Critical CSS preload - will be replaced by Vite-generated critical CSS -->
+  <link rel="preload" as="style" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/style.css">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "name": "PWM Car Mechanics",
+    "description": "Pulse Width Modulation for Automotive Electronics",
+    "url": "https://pwm-car-mechanics.com",
+    "author": "PWM Car Mechanics"
+  }
+  </script>
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Pulse Width Modulation for Automotive Electronics">
+  <meta property="og:description" content="The complete interactive guide to PWM signals in modern vehicles">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pwm-car-mechanics.com">
+  <meta property="og:image" content="https://pwm-car-mechanics.com/assets/og-image.jpg">
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pulse Width Modulation for Automotive Electronics">
+  <meta name="twitter:description" content="The complete interactive guide to PWM signals in modern vehicles">
 </head>
 <body>
   <header>
@@ -176,6 +200,54 @@
       </div>
     </div>
   </footer>
+
+  <script type="module">
+    import { renderMarkdown } from '/src/markdownRenderer.js';
+
+// Detect ?md=lessons/0001 in URL and render markdown instead of HTML
+    const urlParams = new URLSearchParams(location.search);
+    const mdPath = urlParams.get('md');
+
+    if (mdPath) {
+      // Fetch the markdown content from content/ directory
+      fetch(`/content/${mdPath}.md`)
+        .then(res => {
+          if (!res.ok) throw new Error('Markdown not found');
+          return res.text();
+        })
+        .then(text => {
+          // Extract front matter (YAML between --- delimiters)
+          const frontMatterMatch = text.match(/^---\n([\s\S]*?)\n---/m);
+          const frontMatter = {};
+          if (frontMatterMatch) {
+            const yamlBlock = frontMatterMatch[1];
+            // Simple YAML parsing for key: value pairs
+            yamlBlock.split('\n').forEach(line => {
+              const match = line.match(/^(\w+):\s*(.+)$/);
+              if (match) {
+                frontMatter[match[1]] = match[2].trim();
+              }
+            });
+            // Remove front matter from content
+            const contentStart = text.indexOf('---', frontMatterMatch.index + 3);
+            const mdContent = text.substring(contentStart + 3).trim();
+          } else {
+            const mdContent = text.trim();
+          }
+
+          // Render the markdown HTML document
+          const doc = renderMarkdown(mdContent, frontMatter);
+          document.open();
+          document.write(doc);
+          document.close();
+        })
+        .catch(err => {
+          console.error('Markdown rendering error:', err);
+          // Fall back to original HTML if markdown not found
+          document.write('<p>Markdown content not found. Serving original HTML.</p>');
+        });
+    }
+  </script>
 
   <script>
     // Initialize hero background animation
