@@ -1,0 +1,19 @@
+{
+  "name": "pwm-car-mechanics",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:site": "pnpm --filter @pwm/site dev",
+    "dev:presentation": "pnpm --filter pwm-presentation dev:integrated",
+    "build": "pnpm --filter @pwm/site build && pnpm --filter pwm-presentation build:integrated",
+    "build:site": "pnpm --filter @pwm/site build",
+    "build:presentation": "pnpm --filter pwm-presentation build:integrated",
+    "preview": "node scripts/preview.mjs"
+  }
+}

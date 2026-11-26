@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/*
+ * Single Source of Truth Design Tokens — PWM Car Mechanics
+ * Shared by the Landing Hub, Learning Site, and Slidev Presentation.
+ * Uses OKLCH colors (hue `none` on neutrals) + color-mix() derivations.
+ */
+:root {
+  color-scheme: dark;
+
+  /* Core Neutral Palette (OKLCH with hue `none` / subtle cool slate) */
+  --pwm-bg: oklch(0.145 0.018 260);
+  --pwm-surface: oklch(0.195 0.022 260);
+  --pwm-surface-raised: oklch(0.245 0.026 260);
+  --pwm-scope-bg: oklch(0.105 0.014 250);
+
+  --pwm-ink: oklch(0.96 0.005 260);
+  --pwm-ink-secondary: oklch(0.76 0.016 260);
+  --pwm-ink-muted: oklch(0.58 0.018 260);
+
+  /* Semantic Automotive Signal Accents */
+  --pwm-accent: oklch(0.64 0.19 258);          /* Electric Signal Blue */
+  --pwm-accent-hover: color-mix(in oklch, var(--pwm-accent), white 16%);
+  --pwm-accent-soft: color-mix(in oklch, var(--pwm-accent) 14%, transparent);
+  --pwm-accent-border: color-mix(in oklch, var(--pwm-accent) 36%, transparent);
+
+  --pwm-signal: oklch(0.74 0.17 160);          /* Oscilloscope Phosphor Emerald */
+  --pwm-signal-soft: color-mix(in oklch, var(--pwm-signal) 14%, transparent);
+  --pwm-signal-border: color-mix(in oklch, var(--pwm-signal) 36%, transparent);
+
+  --pwm-warning: oklch(0.79 0.16 76);          /* Fuse / Fuel Amber */
+  --pwm-warning-soft: color-mix(in oklch, var(--pwm-warning) 14%, transparent);
+  --pwm-warning-border: color-mix(in oklch, var(--pwm-warning) 36%, transparent);
+
+  --pwm-danger: oklch(0.64 0.22 24);           /* +12V Power / Fault Crimson */
+  --pwm-danger-soft: color-mix(in oklch, var(--pwm-danger) 14%, transparent);
+  --pwm-danger-border: color-mix(in oklch, var(--pwm-danger) 38%, transparent);
+
+  --pwm-fluid: oklch(0.76 0.13 220);           /* Garden Hose Cyan */
+  --pwm-fluid-soft: color-mix(in oklch, var(--pwm-fluid) 14%, transparent);
+
+  /* Borders & Elevation */
+  --pwm-border: color-mix(in oklch, oklch(1 0 none) 10%, transparent);
+  --pwm-border-strong: color-mix(in oklch, oklch(1 0 none) 18%, transparent);
+  --pwm-shadow-sm: 0 2px 8px oklch(0 0 none / 0.32);
+  --pwm-shadow-md: 0 8px 24px oklch(0 0 none / 0.45);
+  --pwm-shadow-lg: 0 18px 42px oklch(0 0 none / 0.58);
+
+  /* Typography */
+  --pwm-font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --pwm-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Fluid Type Scale (clamp with rem + vw, max/min <= 2.5) */
+  --pwm-text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.82rem);
+  --pwm-text-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.95rem);
+  --pwm-text-base: clamp(1rem, 0.96rem + 0.22vw, 1.08rem);
+  --pwm-text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3rem);
+  --pwm-text-xl: clamp(1.35rem, 1.18rem + 0.7vw, 1.75rem);
+  --pwm-text-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --pwm-text-hero: clamp(2.15rem, 1.55rem + 2.4vw, 3.6rem);
+
+  /* Radii & Motion */
+  --pwm-radius-sm: 0.5rem;
+  --pwm-radius-md: 0.75rem;
+  --pwm-radius-lg: 1.125rem;
+  --pwm-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --pwm-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Legacy aliases for Slidev compatibility */
+  --bg: var(--pwm-bg);
+  --bg-primary: var(--pwm-bg);
+  --bg-secondary: var(--pwm-surface);
+  --bg-tertiary: var(--pwm-surface-raised);
+  --fg: var(--pwm-ink);
+  --fg-secondary: var(--pwm-ink-secondary);
+  --fg-muted: var(--pwm-ink-muted);
+  --text-primary: var(--pwm-ink);
+  --text-secondary: var(--pwm-ink-secondary);
+  --text-muted: var(--pwm-ink-muted);
+  --accent: var(--pwm-accent);
+  --accent-hover: var(--pwm-accent-hover);
+  --accent-success: var(--pwm-signal);
+  --accent-warning: var(--pwm-warning);
+  --border: var(--pwm-border);
+  --border-color: var(--pwm-border);
+  --border-hover: var(--pwm-border-strong);
+  --font-sans: var(--pwm-font-sans);
+  --font-mono: var(--pwm-font-mono);
+}
+
+/* Shared Interactive Widget Chrome (used inside both Site and Slidev) */
+.pwm-sim-shell {
+  container-type: inline-size;
+  background: var(--pwm-surface);
+  border: 1px solid var(--pwm-border);
+  border-radius: var(--pwm-radius-lg);
+  overflow: clip;
+  box-shadow: var(--pwm-shadow-md);
+  color: var(--pwm-ink);
+  font-family: var(--pwm-font-sans);
+  text-align: start;
+}
+
+.pwm-sim-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+  padding-inline: 1.25rem;
+  background: var(--pwm-surface-raised);
+  border-block-end: 1px solid var(--pwm-border);
+}
+
+.pwm-sim-badge {
+  display: inline-block;
+  padding-block: 0.2rem;
+  padding-inline: 0.55rem;
+  border-radius: 0.35rem;
+  background: var(--pwm-accent);
+  color: oklch(0.99 0 none);
+  font-family: var(--pwm-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pwm-sim-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--pwm-ink);
+}
+
+.pwm-sim-meta {
+  margin-inline-start: auto;
+  font-family: var(--pwm-font-mono);
+  font-size: 0.76rem;
+  color: var(--pwm-accent-hover);
+  font-variant-numeric: tabular-nums;
+}
+
+.pwm-sim-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.pwm-sim-panel {
+  background: var(--pwm-scope-bg);
+  border: 1px solid var(--pwm-border);
+  border-radius: var(--pwm-radius-md);
+  padding: 0.85rem;
+}
+
+.pwm-sim-panel-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--pwm-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pwm-ink-muted);
+  margin-block-end: 0.5rem;
+}
+
+.pwm-stat-grid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr));
+}
+
+.pwm-stat-card {
+  background: var(--pwm-bg);
+  border: 1px solid var(--pwm-border);
+  border-radius: var(--pwm-radius-sm);
+  padding-block: 0.6rem;
+  padding-inline: 0.75rem;
+  text-align: center;
+}
+
+.pwm-stat-label {
+  font-size: 0.7rem;
+  color: var(--pwm-ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-block-end: 0.2rem;
+}
+
+.pwm-stat-value {
+  font-family: var(--pwm-font-mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--pwm-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pwm-stat-value.is-accent { color: var(--pwm-accent-hover); }
+.pwm-stat-value.is-signal { color: var(--pwm-signal); }
+.pwm-stat-value.is-warning { color: var(--pwm-warning); }
+.pwm-stat-value.is-danger { color: var(--pwm-danger); }
+
+.pwm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding-block: 0.55rem;
+  padding-inline: 0.95rem;
+  border-radius: var(--pwm-radius-sm);
+  border: 1px solid var(--pwm-border-strong);
+  background: var(--pwm-surface-raised);
+  color: var(--pwm-ink);
+  font-family: var(--pwm-font-sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background-color 150ms var(--pwm-ease-out), border-color 150ms var(--pwm-ease-out), color 150ms var(--pwm-ease-out);
+}
+
+.pwm-btn:focus-visible {
+  outline: 2px solid var(--pwm-accent-hover);
+  outline-offset: 2px;
+}
+
+.pwm-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pwm-btn {
+    transition: background-color 150ms var(--pwm-ease-out), border-color 150ms var(--pwm-ease-out), color 150ms var(--pwm-ease-out), transform 140ms var(--pwm-ease-out);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pwm-btn:hover:not(:disabled) {
+    border-color: var(--pwm-accent);
+    background: color-mix(in oklch, var(--pwm-surface-raised), var(--pwm-accent) 14%);
+  }
+}
+
+.pwm-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pwm-btn.is-active {
+  background: var(--pwm-accent);
+  border-color: var(--pwm-accent);
+  color: oklch(0.99 0 none);
+}
+
+.pwm-btn.is-danger {
+  border-color: var(--pwm-danger-border);
+  color: color-mix(in oklch, var(--pwm-danger), white 28%);
+}
+
+.pwm-btn.is-danger.is-active {
+  background: var(--pwm-danger);
+  border-color: var(--pwm-danger);
+  color: oklch(0.99 0 none);
+}
+
+.pwm-btn.is-success {
+  background: var(--pwm-signal);
+  border-color: var(--pwm-signal);
+  color: oklch(0.14 0.02 160);
+  font-weight: 600;
+}
+
+.pwm-range {
+  inline-size: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  block-size: 0.45rem;
+  border-radius: 999px;
+  background: var(--pwm-surface-raised);
+  cursor: pointer;
+}
+
+.pwm-range:focus-visible {
+  outline: 2px solid var(--pwm-accent-hover);
+  outline-offset: 4px;
+}
+
+.pwm-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  border-radius: 50%;
+  background: var(--pwm-accent-hover);
+  border: 2px solid var(--pwm-bg);
+  box-shadow: 0 0 0 1px var(--pwm-accent);
+  cursor: pointer;
+}
+
+.pwm-range::-moz-range-thumb {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  border-radius: 50%;
+  background: var(--pwm-accent-hover);
+  border: 2px solid var(--pwm-bg);
+  box-shadow: 0 0 0 1px var(--pwm-accent);
+  cursor: pointer;
+}
+
+.pwm-sim-callout {
+  background: var(--pwm-bg);
+  border: 1px solid var(--pwm-border);
+  border-inline-start: 3px solid var(--pwm-accent);
+  border-radius: var(--pwm-radius-sm);
+  padding-block: 0.7rem;
+  padding-inline: 0.95rem;
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--pwm-ink-secondary);
+}
+
+.pwm-sim-callout strong {
+  color: var(--pwm-ink);
+}
+
+.pwm-sim-callout.is-danger {
+  border-color: var(--pwm-danger-border);
+  border-inline-start-color: var(--pwm-danger);
+  background: var(--pwm-danger-soft);
+  color: color-mix(in oklch, var(--pwm-danger), white 55%);
+}
+
+.pwm-sim-callout.is-signal {
+  border-color: var(--pwm-signal-border);
+  border-inline-start-color: var(--pwm-signal);
+  background: var(--pwm-signal-soft);
+  color: color-mix(in oklch, var(--pwm-signal), white 55%);
+}
+
+.pwm-sim-callout.is-warning {
+  border-color: var(--pwm-warning-border);
+  border-inline-start-color: var(--pwm-warning);
+  background: var(--pwm-warning-soft);
+  color: color-mix(in oklch, var(--pwm-warning), white 55%);
+}
+
+.pwm-tabular {
+  font-variant-numeric: tabular-nums;
+}

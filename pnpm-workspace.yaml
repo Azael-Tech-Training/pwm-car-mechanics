@@ -1,0 +1,13 @@
+packages:
+  - "packages/*"
+  - "site"
+  - "pwm-presentation"
+
+shamefullyHoist: true
+
+overrides:
+  markdown-it: "14.1.0"
+
+allowBuilds:
+  playwright-chromium: true
+  esbuild: true
