@@ -1,0 +1,348 @@
+/* Modern CSS Reset & Page Layout (following good-css practices) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+:root {
+  interpolate-size: allow-keywords;
+  scrollbar-gutter: stable;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-block-size: 100svh;
+  background-color: var(--pwm-bg);
+  background-image:
+    radial-gradient(ellipse 65% 45% at 15% 0%, color-mix(in oklch, var(--pwm-accent) 11%, transparent), transparent 65%),
+    radial-gradient(ellipse 55% 40% at 88% 12%, color-mix(in oklch, var(--pwm-signal) 8%, transparent), transparent 60%);
+  color: var(--pwm-ink);
+  font-family: var(--pwm-font-sans);
+  font-size: var(--pwm-text-base);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+  margin-block: 0;
+  color: var(--pwm-ink);
+}
+
+p {
+  margin-block: 0;
+}
+
+img, svg, video {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+input, textarea, select {
+  font-size: max(16px, 1rem);
+}
+
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+button, [role="button"] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:focus-visible {
+  outline: max(2px, 0.08em) solid var(--pwm-accent-hover);
+  outline-offset: 0.2em;
+}
+
+/* Content Grid with Breakouts */
+.content-grid {
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --content: 68rem;
+  --breakout: 80rem;
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--gutter), 1fr)
+    [breakout-start] minmax(0, calc((var(--breakout) - var(--content)) / 2))
+    [content-start] min(100% - var(--gutter) * 2, var(--content)) [content-end]
+    minmax(0, calc((var(--breakout) - var(--content)) / 2)) [breakout-end]
+    minmax(var(--gutter), 1fr) [full-width-end];
+}
+
+:is(.content-grid, .full-width) > * {
+  grid-column: content;
+}
+
+:is(.content-grid, .full-width) > .breakout {
+  grid-column: breakout;
+}
+
+:is(.content-grid, .full-width) > .full-width {
+  grid-column: full-width;
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+/* Narrow Reading Grid for Lessons & Reference */
+.reading-grid {
+  --content: 52rem;
+  --breakout: 64rem;
+}
+
+/* Prose Spacing */
+.prose > * {
+  margin-block: 0;
+}
+
+.prose > * + * {
+  margin-block-start: var(--flow-space, 1.1rem);
+}
+
+.prose > h2 {
+  --flow-space: 2.35rem;
+  font-size: var(--pwm-text-xl);
+  font-weight: 600;
+  padding-block-end: 0.45rem;
+  border-block-end: 1px solid var(--pwm-border);
+  color: color-mix(in oklch, var(--pwm-ink), var(--pwm-accent) 18%);
+}
+
+.prose > h3 {
+  --flow-space: 1.75rem;
+  font-size: var(--pwm-text-lg);
+  font-weight: 600;
+}
+
+.prose > :is(h2, h3) + * {
+  --flow-space: 0.75rem;
+}
+
+.prose p,
+.prose li {
+  color: var(--pwm-ink-secondary);
+}
+
+.prose strong {
+  color: var(--pwm-ink);
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.prose a {
+  color: var(--pwm-accent-hover);
+  text-underline-offset: 0.2em;
+}
+
+.prose code {
+  font-family: var(--pwm-font-mono);
+  font-size: 0.88em;
+  background: var(--pwm-surface-raised);
+  padding-block: 0.14rem;
+  padding-inline: 0.4rem;
+  border-radius: 0.35rem;
+  color: color-mix(in oklch, var(--pwm-warning), white 22%);
+}
+
+/* Callout Boxes */
+.lesson-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-block: 1rem;
+  padding-inline: 1.15rem;
+  border-radius: 0 var(--pwm-radius-md) var(--pwm-radius-md) 0;
+  border-inline-start: 4px solid var(--pwm-accent);
+  background: var(--pwm-accent-soft);
+}
+
+.lesson-callout.is-tip {
+  border-inline-start-color: var(--pwm-signal);
+  background: var(--pwm-signal-soft);
+}
+
+.lesson-callout.is-warning {
+  border-inline-start-color: var(--pwm-warning);
+  background: var(--pwm-warning-soft);
+}
+
+.lesson-callout-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--pwm-ink);
+}
+
+.lesson-callout p {
+  font-size: 0.94rem;
+  color: var(--pwm-ink-secondary);
+}
+
+/* Math Equation Display Pill */
+.equation-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-block: 0.85rem;
+  padding-inline: 1.25rem;
+  background: var(--pwm-scope-bg);
+  border: 1px solid var(--pwm-border-strong);
+  border-radius: var(--pwm-radius-md);
+  font-family: var(--pwm-font-mono);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.22rem);
+  font-weight: 600;
+  color: var(--pwm-accent-hover);
+  font-variant-numeric: tabular-nums;
+}
+
+.equation-box.is-danger {
+  color: color-mix(in oklch, var(--pwm-danger), white 25%);
+  border-color: var(--pwm-danger-border);
+}
+
+/* Clickable Card Pattern (good-css) */
+.click-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--pwm-surface);
+  border: 1px solid var(--pwm-border);
+  border-radius: var(--pwm-radius-lg);
+  padding: 1.4rem;
+  transition: border-color 180ms var(--pwm-ease-out), background-color 180ms var(--pwm-ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .click-card {
+    transition: border-color 180ms var(--pwm-ease-out), background-color 180ms var(--pwm-ease-out), transform 180ms var(--pwm-ease-out);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .click-card:hover {
+    border-color: var(--pwm-accent-border);
+    background: color-mix(in oklch, var(--pwm-surface), var(--pwm-accent) 5%);
+    transform: translateY(-2px);
+  }
+}
+
+.click-card:active {
+  transform: scale(0.985);
+}
+
+.click-card .card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.click-card .card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.click-card .card-link:focus-visible {
+  outline: 2px solid transparent;
+}
+
+.click-card:has(.card-link:focus-visible) {
+  outline: 2px solid var(--pwm-accent-hover);
+  outline-offset: 2px;
+}
+
+.click-card :is(button, a:not(.card-link)) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reusable Primary / Secondary Link Buttons */
+.site-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-block: 0.7rem;
+  padding-inline: 1.2rem;
+  border-radius: var(--pwm-radius-sm);
+  border: 1px solid var(--pwm-border-strong);
+  background: var(--pwm-surface-raised);
+  color: var(--pwm-ink);
+  font-family: var(--pwm-font-sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms var(--pwm-ease-out), border-color 160ms var(--pwm-ease-out);
+}
+
+.site-btn:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-btn {
+    transition: background-color 160ms var(--pwm-ease-out), border-color 160ms var(--pwm-ease-out), transform 140ms var(--pwm-ease-out);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-btn:hover {
+    border-color: var(--pwm-accent);
+    background: color-mix(in oklch, var(--pwm-surface-raised), var(--pwm-accent) 16%);
+  }
+}
+
+.site-btn.is-primary {
+  background: var(--pwm-accent);
+  border-color: var(--pwm-accent);
+  color: oklch(0.99 0 none);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-btn.is-primary:hover {
+    background: var(--pwm-accent-hover);
+    border-color: var(--pwm-accent-hover);
+  }
+}
+
+.site-btn.is-signal {
+  background: var(--pwm-signal-soft);
+  border-color: var(--pwm-signal-border);
+  color: var(--pwm-signal);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-btn.is-signal:hover {
+    background: color-mix(in oklch, var(--pwm-signal) 22%, transparent);
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--pwm-font-mono);
+  font-size: var(--pwm-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pwm-accent-hover);
+}
