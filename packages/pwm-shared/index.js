@@ -1,0 +1,10 @@
+export { default as PwmSimulator } from './components/PwmSimulator.vue'
+export { default as CircuitSimulator } from './components/CircuitSimulator.vue'
+export { default as DiagnosticsLab } from './components/DiagnosticsLab.vue'
+export { default as EcuSimulator } from './components/EcuSimulator.vue'
+export { default as FlowComparison } from './components/FlowComparison.vue'
+export { default as TimeModulation } from './components/TimeModulation.vue'
+export { default as FuelPumpSimulator } from './components/FuelPumpSimulator.vue'
+export { default as QuizWidget } from './components/QuizWidget.vue'
+
+export { LESSONS, SHARED_DIAGRAMS, EXTERNAL_RESOURCES, localize } from './data/curriculum.js'
