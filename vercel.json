@@ -1,0 +1,11 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/presentation", "destination": "/presentation/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/presentation/(.*)", "destination": "/presentation/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
