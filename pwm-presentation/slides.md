@@ -9,14 +9,10 @@ info: |
 class: text-center
 drawings:
   persist: false
-transition: slide-left
+transition: fade
 comark: true
 duration: 35min
 ---
-
-<style>
-@import './style.css';
-</style>
 
 # PWM en Sistemas Automotrices
 
@@ -26,12 +22,10 @@ Modulación por Ancho de Pulso: Del concepto a la práctica
 Gelacio Azael Fernandez Aldava
 </div>
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Presiona Espacio para continuar <carbon:arrow-right />
+<div @click="$slidev.nav.next" class="mt-12 py-2 px-4 inline-block rounded cursor-pointer hover:bg-white/10">
+  Presiona Espacio o Flecha Derecha para continuar <carbon:arrow-right />
 </div>
 
----
-transition: fade-out
 ---
 
 # ¿Qué es PWM?
@@ -148,8 +142,6 @@ $$f = \frac{1}{T_{total}}$$
 />
 
 ---
-transition: slide-up
----
 
 # Interruptor Low-Side vs High-Side
 
@@ -210,8 +202,6 @@ layout: center
 />
 
 ---
-transition: slide-up
----
 
 # Diagnósticos: Multímetro vs Osciloscopio
 
@@ -261,8 +251,6 @@ transition: slide-up
   explanation="Si el PWM está al 50% de ciclo de trabajo, 6V es correcto (12V × 0.5 = 6V promedio). Necesitas un osciloscopio para confirmar la forma de onda correcta."
 />
 
----
-transition: slide-up
 ---
 
 # Cortos a Tierra y Fusibles
@@ -326,8 +314,6 @@ layout: center
 />
 
 ---
-transition: slide-up
----
 
 # Lógica de Control del ECU
 
@@ -386,8 +372,6 @@ layout: center
 />
 
 ---
-transition: slide-up
----
 
 # Analogía de la Manguera de Jardín
 
@@ -431,8 +415,6 @@ layout: center
 
 <FlowComparison />
 
----
-transition: slide-up
 ---
 
 # Cómo el ECU Cambia el Ciclo de Trabajo
@@ -490,8 +472,6 @@ layout: center
 />
 
 ---
-transition: slide-up
----
 
 # Aplicación Práctica: Bomba de Combustible
 
@@ -523,7 +503,7 @@ transition: slide-up
 
 <div v-click class="mt-6 p-4 bg-emerald-900/30 rounded-lg border border-emerald-500/30">
 
-**Beneficios**: Reducción de emisiones EVAP, menor drenaje de batería, vida útil延长ada de la bomba.
+**Beneficios**: Reducción de emisiones EVAP, menor drenaje de batería, vida útil prolongada de la bomba.
 
 </div>
 
@@ -563,8 +543,6 @@ layout: center
   explanation="El PCM al FPDM usa 80 Hz (señal de control lenta, robusta). El FPDM a la bomba usa 20 kHz (drive de alta frecuencia para operación suave y eficiente del motor DC)."
 />
 
----
-transition: slide-up
 ---
 
 # Resumen de Conceptos Clave
@@ -640,7 +618,7 @@ Gelacio Azael Fernandez Aldava
 - **PicoScope**: Pruebas guiadas de diagnóstico automotriz
 - **ScannerDanner**: Libro y canal de YouTube sobre diagnósticos
 - **Halderman**: Textbook de electricidad automotriz
-- **Foros**: r/diy电子s, r/mechanicadvice, Speeduino
+- **Foros**: r/diyelectronics, r/mechanicadvice, Speeduino
 
 </div>
 

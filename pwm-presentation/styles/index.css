@@ -1,0 +1,228 @@
+@import '@pwm/shared/styles/tokens.css';
+
+:root {
+  --slidev-theme-primary: var(--pwm-accent);
+}
+
+html {
+  background-color: var(--pwm-bg) !important;
+}
+
+body {
+  background-color: var(--pwm-bg) !important;
+  color: var(--pwm-ink) !important;
+  font-family: var(--pwm-font-sans) !important;
+}
+
+.slidev-layout {
+  background-color: var(--pwm-bg) !important;
+  color: var(--pwm-ink) !important;
+}
+
+.slidev-layout h1 {
+  background: linear-gradient(135deg, oklch(0.99 0 none) 0%, oklch(0.78 0.12 265) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.slidev-layout h2 {
+  color: oklch(0.92 0.04 265) !important;
+  border-block-end: 1px solid var(--pwm-border) !important;
+  padding-block-end: 0.4rem !important;
+}
+
+.slidev-layout h3 {
+  color: var(--pwm-ink) !important;
+}
+
+.slidev-layout p {
+  color: var(--pwm-ink-secondary) !important;
+}
+
+.slidev-layout strong {
+  color: var(--pwm-ink) !important;
+}
+
+.slidev-layout code {
+  font-family: var(--pwm-font-mono) !important;
+  background-color: var(--pwm-surface-raised) !important;
+  color: oklch(0.72 0.19 16) !important;
+}
+
+.slidev-layout pre {
+  background-color: var(--pwm-surface-raised) !important;
+  border: 1px solid var(--pwm-border) !important;
+  border-radius: 10px !important;
+}
+
+.slidev-layout pre code {
+  background-color: transparent !important;
+  color: oklch(0.86 0.02 255) !important;
+}
+
+.slidev-layout a {
+  color: var(--pwm-accent-hover) !important;
+}
+
+.slidev-layout blockquote {
+  border-inline-start: 4px solid var(--pwm-accent) !important;
+  background-color: var(--pwm-accent-soft) !important;
+  padding: 1rem !important;
+  border-radius: 0 12px 12px 0 !important;
+  color: var(--pwm-ink-secondary) !important;
+}
+
+/*
+ * Ensure `layout: center` gives full inline-size to its grid track so
+ * `container-type: inline-size` simulators expand horizontally into
+ * two-column mode and fit cleanly inside the 980x552 Slidev canvas.
+ */
+.slidev-layout.center {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-content: center !important;
+  justify-items: center !important;
+  padding-block: 1.25rem !important;
+  padding-inline: 2.25rem !important;
+}
+
+.slidev-layout.center > div {
+  inline-size: 100%;
+  max-inline-size: 56rem;
+}
+
+.slidev-layout.center h1 {
+  font-size: 1.55rem !important;
+  line-height: 1.2 !important;
+  margin-block-end: 0.6rem !important;
+  text-align: center;
+}
+
+.slidev-layout .pwm-sim-shell {
+  inline-size: 100%;
+  margin-inline: auto;
+  border-radius: 0.85rem;
+}
+
+.slidev-layout .pwm-sim-header {
+  padding-block: 0.38rem;
+  padding-inline: 0.85rem;
+}
+
+.slidev-layout .pwm-sim-title {
+  font-size: 0.86rem;
+}
+
+.slidev-layout .pwm-sim-body {
+  gap: 0.45rem;
+  padding: 0.6rem 0.85rem;
+}
+
+.slidev-layout .pwm-sim-panel {
+  padding: 0.48rem 0.65rem;
+}
+
+.slidev-layout .pwm-sim-panel-label {
+  margin-block-end: 0.25rem;
+  font-size: 0.65rem;
+}
+
+.slidev-layout .pwm-stat-card {
+  padding-block: 0.28rem;
+  padding-inline: 0.5rem;
+}
+
+.slidev-layout .pwm-stat-label {
+  font-size: 0.62rem;
+  margin-block-end: 0.1rem;
+}
+
+.slidev-layout .pwm-stat-value {
+  font-size: 0.88rem;
+}
+
+.slidev-layout .pwm-btn {
+  padding-block: 0.38rem;
+  padding-inline: 0.72rem;
+  font-size: 0.78rem;
+}
+
+.slidev-layout .pwm-sim-callout {
+  padding-block: 0.38rem;
+  padding-inline: 0.72rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.slidev-layout .pwm-sim-shell p {
+  margin-block: 0 !important;
+}
+
+.slidev-layout .pwm-circuit-svg {
+  max-block-size: 11.2rem;
+  margin-inline: auto;
+}
+
+.slidev-layout .pwm-scope-svg {
+  max-block-size: 9.2rem;
+}
+
+.slidev-layout .ecu-pipeline {
+  padding-block: 0.22rem;
+  padding-inline: 0.45rem;
+}
+
+.slidev-layout .ecu-node {
+  padding-block: 0.2rem;
+}
+
+.slidev-layout .ecu-scope-svg {
+  max-block-size: 6.2rem;
+}
+
+.slidev-layout .ecu-zones {
+  display: none;
+}
+
+.slidev-layout .ecu-slider-box,
+.slidev-layout .fuel-slider-box,
+.slidev-layout .pwm-control-card {
+  padding: 0.45rem 0.7rem;
+  gap: 0.3rem;
+}
+
+.slidev-layout .ecu-fan-svg,
+.slidev-layout .tm-fan-svg {
+  inline-size: 4.25rem;
+  block-size: 4.25rem;
+}
+
+.slidev-layout .tm-chart-svg {
+  max-block-size: 3.8rem;
+}
+
+.slidev-layout .tm-tap-btn {
+  padding-block: 0.75rem;
+}
+
+.slidev-layout .fuel-gauge-svg {
+  inline-size: 8.2rem;
+}
+
+.slidev-layout .fuel-pipe-svg {
+  max-block-size: 2.85rem;
+}
+
+.slidev-layout .fuel-scope-svg {
+  max-block-size: 4.2rem;
+}
+
+.slidev-vclick-target {
+  transition: opacity 180ms var(--pwm-ease-out) !important;
+}
+
+.slidev-vclick-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
